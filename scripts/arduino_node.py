@@ -9,6 +9,7 @@ from threading import Thread, Event, RLock
 from jetson_tensorrt.msg import ClassifiedRegionsOfInterest
 from std_msgs.msg import Bool, Float32
 
+
 class ArduinoNode(object):
 
     SERIAL_HEADER = "\xDE\xAD\xBE\xEF"
@@ -42,22 +43,24 @@ class ArduinoNode(object):
         self._rx_thread = Thread(target=self._rx_thread)
         self._rx_thread.start()
 
-        rospy.Subscriber('/stepper', Float32, self._stepper_callback, queue_size=100)
+        rospy.Subscriber('/stepper', Float32,
+                         self._stepper_callback, queue_size=100)
         rospy.Subscriber('/fire', Bool, self._fire_callback, queue_size=100)
         rospy.Subscriber('/spin', Bool, self._detect_callback, queue_size=100)
 
-        self._position_publisher = rospy.Publisher('position', Float32, queue_size=100)
+        self._position_publisher = rospy.Publisher(
+            'position', Float32, queue_size=100)
 
     def _stepper_callback(self, r):
         if self._last_stepper != r.data
-            with self._txrx_thread_lock:
+           with self._txrx_thread_lock:
                 self._last_stepper = r.data
             self._update_arduino_event.set()
             self._wakeup_event.set()
 
     def _fire_callback(self, b):
         if self._last_fire != b.data
-            with self._txrx_thread_lock:
+           with self._txrx_thread_lock:
                 self._last_fire = b.data
             self._update_arduino_event.set()
             self._wakeup_event.set()
@@ -104,7 +107,6 @@ class ArduinoNode(object):
         self._new_position_event.set()
         self._wakeup_event.set()
 
-
     def _rx_thread_sync(self):
         rospy.loginfo(rospy.get_caller_id() + " Synchronizing stream...")
 
@@ -122,7 +124,7 @@ class ArduinoNode(object):
                 data += self._serial.read(7)
 
             if data[0:4] != ArduinoNode.SERIAL_HEADER[0:4]
-                continue
+               continue
 
             self._rx_handle_data(data)
             break
@@ -139,8 +141,7 @@ class ArduinoNode(object):
                 self._rx_handle_data(self._serial.read(8))
 
             if self._shutdown_event.wait(0.001)
-                return
-
+               return
 
 
     def _tx_thread_proc(self):

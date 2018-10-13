@@ -10,6 +10,7 @@ from jetson_tensorrt.msg import ClassifiedRegionsOfInterest
 from geometry_msgs.msg import Vector3
 from std_msgs.msg import Bool, time, Int32, Float32
 
+
 class PelicannonNode(object):
 
     def __init__(self):
@@ -27,7 +28,8 @@ class PelicannonNode(object):
         self._detect_window_spin = rospy.get_param('detect_window_spin', 3)
         self._detect_window_fire = rospy.get_param('detect_window_fire', 0.5)
 
-        self._delta_angle_fire = rospy.get_param('delta_angle_fire', math.pi/16.)
+        self._delta_angle_fire = rospy.get_param(
+            'delta_angle_fire', math.pi / 16.)
 
         self._last_detect = ClassifiedRegionsOfInterest()
         self._last_detect_time = rospy.Time(0)
@@ -37,9 +39,12 @@ class PelicannonNode(object):
 
         self._location = 0
 
-        rospy.Subscriber('/detector/detections', ClassifiedRegionsOfInterest, self._detect_callback, queue_size=2)
-        rospy.Subscriber('/arduino/stepper_feedback', Int32, self._stepper_callback, queue_size=100)
-        self._stepper_publisher = rospy.Publisher('stepper', Float32, queue_size=100)
+        rospy.Subscriber('/detector/detections', ClassifiedRegionsOfInterest,
+                         self._detect_callback, queue_size=2)
+        rospy.Subscriber('/arduino/stepper_feedback', Int32,
+                         self._stepper_callback, queue_size=100)
+        self._stepper_publisher = rospy.Publisher(
+            'stepper', Float32, queue_size=100)
         self._fire_publisher = rospy.Publisher('fire', Bool, queue_size=100)
         self._spin_publisher = rospy.Publisher('spin', Bool, queue_size=100)
 
@@ -98,14 +103,14 @@ class PelicannonNode(object):
 
                 if diff_detect_t < self._detect_window_fire and spinning and not firing:
                     if diff_cooldown_time >= self._fire_cooldown and diff_warmup_time >= self._fire_warmup
-                        self._fire_publisher.publish(True)
-                        firing = True
-                        cooldown_time = rospy.get_time()
+                    self._fire_publisher.publish(True)
+                    firing = True
+                    cooldown_time = rospy.get_time()
 
                 else if diff_detect_t < self._detect_window_fire and spinning and firing
-                    if diff_cooldown_time < self._fire_cooldown or diff_warmup_time < self._fire_warmup
-                        self._fire_publisher.publish(False)
-                        firing = False
+                if diff_cooldown_time < self._fire_cooldown or diff_warmup_time < self._fire_warmup
+                self._fire_publisher.publish(False)
+                firing = False
 
                 # 10 Hz control loop
                 time.sleep(0.1)
