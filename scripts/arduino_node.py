@@ -59,8 +59,8 @@ class ArduinoNode(object):
             self._wakeup_event.set()
 
     def _fire_callback(self, b):
-        if self._last_fire != b.data
-           with self._txrx_thread_lock:
+        if self._last_fire != b.data:
+            with self._txrx_thread_lock:
                 self._last_fire = b.data
             self._update_arduino_event.set()
             self._wakeup_event.set()
