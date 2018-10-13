@@ -85,7 +85,7 @@ class PelicannonNode(object):
                 # closed control loop exit condition
                 if diff_detect_t > self._detect_window_track:
                     self._spin_publisher.publish(False)
-                    self._spin_publisher.publish(False)
+                    self._fire_publisher.publish(False)
                     self._stepper_publisher.publish(0.)
 
                     self._wakeup_event.clear()
