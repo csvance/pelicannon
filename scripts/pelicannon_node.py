@@ -3,12 +3,11 @@
 import signal
 import rospy
 import math
-import time
 from threading import Thread, Event, Lock
 
 from jetson_tensorrt.msg import ClassifiedRegionsOfInterest
 from geometry_msgs.msg import Vector3
-from std_msgs.msg import Bool, time, Int32, Float32
+from std_msgs.msg import Bool, Int32, Float32
 
 
 class PelicannonNode(object):
@@ -101,8 +100,12 @@ class PelicannonNode(object):
                     self._spin_publisher.publish(False)
                     spinning = False
 
+                # TODO: Targetting algorithm and planning
+
                 if diff_detect_t < self._detect_window_fire and spinning and not firing:
+                    # warmup / cooldown check
                     if diff_cooldown_time >= self._fire_cooldown and diff_warmup_time >= self._fire_warmup:
+                        # TODO: Check angle to target
                         self._fire_publisher.publish(True)
                         firing = True
                         cooldown_time = rospy.get_time()
@@ -113,7 +116,7 @@ class PelicannonNode(object):
                         firing = False
 
                 # 10 Hz control loop
-                time.sleep(0.1)
+                self._shutdown_event.wait(0.1)
 
     def shutdown(self):
         self._shutdown_event.set()
