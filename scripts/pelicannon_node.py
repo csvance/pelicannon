@@ -102,15 +102,15 @@ class PelicannonNode(object):
                     spinning = False
 
                 if diff_detect_t < self._detect_window_fire and spinning and not firing:
-                    if diff_cooldown_time >= self._fire_cooldown and diff_warmup_time >= self._fire_warmup
-                    self._fire_publisher.publish(True)
-                    firing = True
-                    cooldown_time = rospy.get_time()
+                    if diff_cooldown_time >= self._fire_cooldown and diff_warmup_time >= self._fire_warmup:
+                        self._fire_publisher.publish(True)
+                        firing = True
+                        cooldown_time = rospy.get_time()
 
-                else if diff_detect_t < self._detect_window_fire and spinning and firing
-                if diff_cooldown_time < self._fire_cooldown or diff_warmup_time < self._fire_warmup
-                self._fire_publisher.publish(False)
-                firing = False
+                else if diff_detect_t < self._detect_window_fire and spinning and firing:
+                    if diff_cooldown_time < self._fire_cooldown or diff_warmup_time < self._fire_warmup:
+                        self._fire_publisher.publish(False)
+                        firing = False
 
                 # 10 Hz control loop
                 time.sleep(0.1)
