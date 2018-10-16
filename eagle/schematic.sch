@@ -6443,25 +6443,28 @@ LETTER landscape</description>
 <part name="OK1" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="PC817" device="" package3d_urn="urn:adsk.eagle:package:21938/1"/>
 <part name="OK2" library="optocoupler" library_urn="urn:adsk.eagle:library:320" deviceset="PC817" device="" package3d_urn="urn:adsk.eagle:package:21938/1"/>
 <part name="R1" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="1k"/>
-<part name="R2" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="1k"/>
-<part name="R3" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="1k"/>
+<part name="R2" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="0.4k"/>
+<part name="R3" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="0.4K"/>
 <part name="R4" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="1k"/>
-<part name="J1" library="SparkFun-Connectors" deviceset="CONN_04" device=""/>
-<part name="J2" library="SparkFun-Connectors" deviceset="CONN_04" device=""/>
 <part name="Q3" library="transistor-power" library_urn="urn:adsk.eagle:library:400" deviceset="TIP120" device="" package3d_urn="urn:adsk.eagle:package:29488/1"/>
 <part name="Q4" library="transistor-power" library_urn="urn:adsk.eagle:library:400" deviceset="TIP120" device="" package3d_urn="urn:adsk.eagle:package:29488/1"/>
 <part name="SPIN" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="L-US" device="0204/5" package3d_urn="urn:adsk.eagle:package:23488/1"/>
 <part name="CYCLE" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="L-US" device="0204/5" package3d_urn="urn:adsk.eagle:package:23488/1"/>
-<part name="UNION1" library="SparkFun-Retired" deviceset="SOLDERJUMPER" device="TRACE"/>
-<part name="UNION2" library="SparkFun-Retired" deviceset="SOLDERJUMPER" device="TRACE"/>
-<part name="J3" library="SparkFun-Connectors" deviceset="CONN_06" device="SILK_FEMALE_PTH"/>
 <part name="FRAME1" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="LETTER_L" device=""/>
 <part name="FRAME2" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="LETTER_L" device=""/>
+<part name="R5" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="1.8K"/>
+<part name="R6" library="SparkFun-Resistors" deviceset="1KOHM" device="-HORIZ-1/4W-1%" value="5K"/>
+<part name="UNION_ARDUINO_VIN_9V+" library="SparkFun-Retired" deviceset="SOLDERJUMPER" device="TRACE"/>
+<part name="UNION_ARDUINO_GND_9V-" library="SparkFun-Retired" deviceset="SOLDERJUMPER" device="TRACE"/>
+<part name="FRAME3" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="LETTER_L" device=""/>
+<part name="J2" library="SparkFun-Connectors" deviceset="CONN_04" device=""/>
+<part name="J3" library="SparkFun-Connectors" deviceset="CONN_04" device=""/>
+<part name="J1" library="SparkFun-Connectors" deviceset="CONN_06" device="SILK_FEMALE_PTH"/>
+<part name="FRAME4" library="frames" library_urn="urn:adsk.eagle:library:229" deviceset="LETTER_L" device=""/>
 </parts>
 <sheets>
 <sheet>
 <plain>
-<text x="-2.54" y="60.96" size="1.778" layer="91">Isolation (9600 BAUD UART)</text>
 <text x="55.88" y="-48.26" size="2.54" layer="91">Isolated UART</text>
 </plain>
 <instances>
@@ -6469,38 +6472,38 @@ LETTER landscape</description>
 <attribute name="NAME" x="5.715" y="53.975" size="1.778" layer="95"/>
 <attribute name="VALUE" x="5.715" y="40.64" size="1.778" layer="96"/>
 </instance>
-<instance part="OK2" gate="A" x="12.7" y="30.48">
-<attribute name="NAME" x="5.715" y="36.195" size="1.778" layer="95"/>
-<attribute name="VALUE" x="5.715" y="22.86" size="1.778" layer="96"/>
+<instance part="OK2" gate="A" x="12.7" y="17.78">
+<attribute name="NAME" x="5.715" y="23.495" size="1.778" layer="95"/>
+<attribute name="VALUE" x="5.715" y="10.16" size="1.778" layer="96"/>
 </instance>
 <instance part="R1" gate="G$1" x="30.48" y="50.8">
 <attribute name="NAME" x="30.48" y="52.324" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="30.48" y="49.276" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="R2" gate="G$1" x="30.48" y="33.02">
-<attribute name="NAME" x="30.48" y="34.544" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="30.48" y="31.496" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R2" gate="G$1" x="30.48" y="20.32">
+<attribute name="NAME" x="30.48" y="21.844" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="30.48" y="18.796" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 <instance part="R3" gate="G$1" x="-12.7" y="50.8">
 <attribute name="NAME" x="-12.7" y="52.324" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="-12.7" y="49.276" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="R4" gate="G$1" x="-5.08" y="33.02">
-<attribute name="NAME" x="-5.08" y="34.544" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="-5.08" y="31.496" size="1.778" layer="96" font="vector" align="top-center"/>
-</instance>
-<instance part="J1" gate="G$1" x="-12.7" y="5.08">
-<attribute name="VALUE" x="-17.78" y="-2.286" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="-17.78" y="13.208" size="1.778" layer="95" font="vector"/>
-</instance>
-<instance part="J2" gate="G$1" x="30.48" y="5.08">
-<attribute name="VALUE" x="25.4" y="-2.286" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="25.4" y="13.208" size="1.778" layer="95" font="vector"/>
+<instance part="R4" gate="G$1" x="-12.7" y="20.32">
+<attribute name="NAME" x="-12.7" y="21.844" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="-12.7" y="18.796" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 <instance part="FRAME1" gate="G$1" x="-106.68" y="-66.04"/>
 <instance part="FRAME1" gate="G$2" x="40.64" y="-66.04">
 <attribute name="LAST_DATE_TIME" x="53.34" y="-64.77" size="2.54" layer="94"/>
 <attribute name="SHEET" x="127" y="-64.77" size="2.54" layer="94"/>
+</instance>
+<instance part="R5" gate="G$1" x="-2.54" y="55.88" rot="R90">
+<attribute name="NAME" x="-4.064" y="55.88" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="-1.016" y="55.88" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
+</instance>
+<instance part="R6" gate="G$1" x="-2.54" y="25.4" rot="R90">
+<attribute name="NAME" x="-4.064" y="25.4" size="1.778" layer="95" font="vector" rot="R90" align="bottom-center"/>
+<attribute name="VALUE" x="-1.016" y="25.4" size="1.778" layer="96" font="vector" rot="R90" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -6509,27 +6512,28 @@ LETTER landscape</description>
 <net name="N2" class="0">
 <segment>
 <pinref part="OK2" gate="A" pin="A"/>
-<wire x1="2.54" y1="33.02" x2="0" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="20.32" x2="-2.54" y2="20.32" width="0.1524" layer="91"/>
 <pinref part="R4" gate="G$1" pin="2"/>
+<pinref part="R6" gate="G$1" pin="1"/>
+<wire x1="-2.54" y1="20.32" x2="-7.62" y2="20.32" width="0.1524" layer="91"/>
+<junction x="-2.54" y="20.32"/>
 </segment>
 </net>
 <net name="ARDUINO_GND" class="0">
 <segment>
 <pinref part="OK2" gate="A" pin="C"/>
-<wire x1="2.54" y1="27.94" x2="-5.08" y2="25.4" width="0.1524" layer="91"/>
-<label x="-5.08" y="25.4" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="J2" gate="G$1" pin="1"/>
-<wire x1="35.56" y1="2.54" x2="43.18" y2="2.54" width="0.1524" layer="91"/>
-<label x="40.64" y="2.54" size="1.778" layer="95"/>
+<wire x1="2.54" y1="15.24" x2="-5.08" y2="12.7" width="0.1524" layer="91"/>
+<label x="-5.08" y="12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N" class="0">
 <segment>
 <pinref part="OK1" gate="A" pin="A"/>
-<wire x1="2.54" y1="50.8" x2="-7.62" y2="50.8" width="0.1524" layer="91"/>
+<wire x1="2.54" y1="50.8" x2="-2.54" y2="50.8" width="0.1524" layer="91"/>
 <pinref part="R3" gate="G$1" pin="2"/>
+<pinref part="R5" gate="G$1" pin="1"/>
+<wire x1="-2.54" y1="50.8" x2="-7.62" y2="50.8" width="0.1524" layer="91"/>
+<junction x="-2.54" y="50.8"/>
 </segment>
 </net>
 <net name="JETSON_GND" class="0">
@@ -6538,18 +6542,8 @@ LETTER landscape</description>
 <wire x1="2.54" y1="45.72" x2="-5.08" y2="43.18" width="0.1524" layer="91"/>
 <label x="-5.08" y="43.18" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
-<segment>
-<pinref part="J1" gate="G$1" pin="1"/>
-<wire x1="-7.62" y1="2.54" x2="0" y2="2.54" width="0.1524" layer="91"/>
-<label x="-2.54" y="2.54" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="ARDUINO_RX" class="0">
-<segment>
-<pinref part="J2" gate="G$1" pin="3"/>
-<wire x1="35.56" y1="7.62" x2="43.18" y2="7.62" width="0.1524" layer="91"/>
-<label x="40.64" y="7.62" size="1.778" layer="95"/>
-</segment>
 <segment>
 <pinref part="OK1" gate="A" pin="EMIT"/>
 <wire x1="20.32" y1="45.72" x2="27.94" y2="43.18" width="0.1524" layer="91"/>
@@ -6558,14 +6552,9 @@ LETTER landscape</description>
 </net>
 <net name="JETSON_RX" class="0">
 <segment>
-<pinref part="J1" gate="G$1" pin="3"/>
-<wire x1="-7.62" y1="7.62" x2="0" y2="7.62" width="0.1524" layer="91"/>
-<label x="-2.54" y="7.62" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="OK2" gate="A" pin="EMIT"/>
-<wire x1="20.32" y1="27.94" x2="27.94" y2="25.4" width="0.1524" layer="91"/>
-<label x="27.94" y="25.4" size="1.778" layer="95" xref="yes"/>
+<wire x1="20.32" y1="15.24" x2="27.94" y2="12.7" width="0.1524" layer="91"/>
+<label x="27.94" y="12.7" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="JETSON_TX" class="0">
@@ -6574,53 +6563,43 @@ LETTER landscape</description>
 <wire x1="-17.78" y1="50.8" x2="-20.32" y2="50.8" width="0.1524" layer="91"/>
 <label x="-20.32" y="50.8" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
-<segment>
-<pinref part="J1" gate="G$1" pin="4"/>
-<wire x1="-7.62" y1="10.16" x2="0" y2="10.16" width="0.1524" layer="91"/>
-<label x="-2.54" y="10.16" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="ARDUINO_TX" class="0">
 <segment>
 <pinref part="R4" gate="G$1" pin="1"/>
-<wire x1="-10.16" y1="33.02" x2="-12.7" y2="33.02" width="0.1524" layer="91"/>
-<label x="-12.7" y="33.02" size="1.778" layer="95" rot="R180" xref="yes"/>
-</segment>
-<segment>
-<pinref part="J2" gate="G$1" pin="4"/>
-<wire x1="35.56" y1="10.16" x2="43.18" y2="10.16" width="0.1524" layer="91"/>
-<label x="40.64" y="10.16" size="1.778" layer="95"/>
+<wire x1="-17.78" y1="20.32" x2="-15.24" y2="20.32" width="0.1524" layer="91"/>
+<label x="-17.78" y="20.32" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="JETSON_1.8V" class="0">
 <segment>
-<pinref part="J1" gate="G$1" pin="2"/>
-<wire x1="-7.62" y1="5.08" x2="0" y2="5.08" width="0.1524" layer="91"/>
-<label x="-2.54" y="5.08" size="1.778" layer="95"/>
+<pinref part="R2" gate="G$1" pin="2"/>
+<wire x1="35.56" y1="20.32" x2="38.1" y2="20.32" width="0.1524" layer="91"/>
+<label x="38.1" y="20.32" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R2" gate="G$1" pin="2"/>
-<wire x1="35.56" y1="33.02" x2="38.1" y2="33.02" width="0.1524" layer="91"/>
-<label x="38.1" y="33.02" size="1.778" layer="95" xref="yes"/>
+<pinref part="R5" gate="G$1" pin="2"/>
+<wire x1="-2.54" y1="60.96" x2="-2.54" y2="66.04" width="0.1524" layer="91"/>
+<label x="-2.54" y="66.04" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="ARDUINO_5V" class="0">
 <segment>
-<pinref part="J2" gate="G$1" pin="2"/>
-<wire x1="35.56" y1="5.08" x2="43.18" y2="5.08" width="0.1524" layer="91"/>
-<label x="40.64" y="5.08" size="1.778" layer="95"/>
-</segment>
-<segment>
 <pinref part="R1" gate="G$1" pin="2"/>
 <wire x1="35.56" y1="50.8" x2="38.1" y2="50.8" width="0.1524" layer="91"/>
 <label x="38.1" y="50.8" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R6" gate="G$1" pin="2"/>
+<wire x1="-2.54" y1="30.48" x2="-2.54" y2="35.56" width="0.1524" layer="91"/>
+<label x="-2.54" y="35.56" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="N$3" class="0">
 <segment>
 <pinref part="R2" gate="G$1" pin="1"/>
 <pinref part="OK2" gate="A" pin="COL"/>
-<wire x1="25.4" y1="33.02" x2="20.32" y2="33.02" width="0.1524" layer="91"/>
+<wire x1="25.4" y1="20.32" x2="20.32" y2="20.32" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$4" class="0">
@@ -6652,16 +6631,6 @@ LETTER landscape</description>
 <instance part="CYCLE" gate="G$1" x="2.54" y="63.5">
 <attribute name="NAME" x="1.27" y="58.42" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="6.35" y="58.42" size="1.778" layer="96" rot="R90"/>
-</instance>
-<instance part="UNION1" gate="1" x="-45.72" y="106.68">
-<attribute name="NAME" x="-48.26" y="109.22" size="1.778" layer="95"/>
-</instance>
-<instance part="UNION2" gate="1" x="-45.72" y="93.98">
-<attribute name="NAME" x="-48.26" y="96.52" size="1.778" layer="95"/>
-</instance>
-<instance part="J3" gate="G$1" x="-50.8" y="66.04">
-<attribute name="VALUE" x="-55.88" y="56.134" size="1.778" layer="96" font="vector"/>
-<attribute name="NAME" x="-55.88" y="76.708" size="1.778" layer="95" font="vector"/>
 </instance>
 <instance part="FRAME2" gate="G$1" x="-121.92" y="-22.86"/>
 <instance part="FRAME2" gate="G$2" x="25.4" y="-22.86">
@@ -6698,23 +6667,6 @@ LETTER landscape</description>
 <junction x="12.7" y="86.36"/>
 <label x="12.7" y="91.44" size="1.778" layer="95" xref="yes"/>
 </segment>
-<segment>
-<wire x1="-45.72" y1="73.66" x2="-38.1" y2="73.66" width="0.1524" layer="91"/>
-<label x="-40.64" y="73.66" size="1.778" layer="95"/>
-<pinref part="J3" gate="G$1" pin="6"/>
-</segment>
-<segment>
-<pinref part="UNION1" gate="1" pin="2"/>
-<wire x1="-40.64" y1="106.68" x2="-33.02" y2="106.68" width="0.1524" layer="91"/>
-<label x="-35.56" y="106.68" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="FIRE_GATE" class="0">
-<segment>
-<pinref part="J3" gate="G$1" pin="2"/>
-<wire x1="-45.72" y1="63.5" x2="-38.1" y2="63.5" width="0.1524" layer="91"/>
-<label x="-40.64" y="63.5" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="9V-" class="0">
 <segment>
@@ -6727,47 +6679,8 @@ LETTER landscape</description>
 <wire x1="12.7" y1="53.34" x2="12.7" y2="48.26" width="0.1524" layer="91"/>
 <label x="12.7" y="48.26" size="1.778" layer="95" xref="yes"/>
 </segment>
-<segment>
-<wire x1="-45.72" y1="71.12" x2="-38.1" y2="71.12" width="0.1524" layer="91"/>
-<label x="-40.64" y="71.12" size="1.778" layer="95"/>
-<pinref part="J3" gate="G$1" pin="5"/>
-</segment>
-<segment>
-<pinref part="UNION2" gate="1" pin="2"/>
-<wire x1="-40.64" y1="93.98" x2="-33.02" y2="93.98" width="0.1524" layer="91"/>
-<label x="-35.56" y="93.98" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="ARDUINO_VIN" class="0">
-<segment>
-<wire x1="-45.72" y1="68.58" x2="-38.1" y2="68.58" width="0.1524" layer="91"/>
-<label x="-40.64" y="68.58" size="1.778" layer="95"/>
-<pinref part="J3" gate="G$1" pin="4"/>
-</segment>
-<segment>
-<pinref part="UNION1" gate="1" pin="1"/>
-<wire x1="-50.8" y1="106.68" x2="-58.42" y2="106.68" width="0.1524" layer="91"/>
-<label x="-66.04" y="106.68" size="1.778" layer="95"/>
-</segment>
-</net>
-<net name="ARDUINO_GND" class="0">
-<segment>
-<pinref part="UNION2" gate="1" pin="1"/>
-<wire x1="-50.8" y1="93.98" x2="-58.42" y2="93.98" width="0.1524" layer="91"/>
-<label x="-68.58" y="93.98" size="1.778" layer="95"/>
-</segment>
-<segment>
-<pinref part="J3" gate="G$1" pin="3"/>
-<wire x1="-45.72" y1="66.04" x2="-38.1" y2="66.04" width="0.1524" layer="91"/>
-<label x="-40.64" y="66.04" size="1.778" layer="95"/>
-</segment>
 </net>
 <net name="SPIN_ENABLE" class="0">
-<segment>
-<pinref part="J3" gate="G$1" pin="1"/>
-<wire x1="-45.72" y1="60.96" x2="-38.1" y2="60.96" width="0.1524" layer="91"/>
-<label x="-40.64" y="60.96" size="1.778" layer="95"/>
-</segment>
 <segment>
 <pinref part="Q4" gate="1" pin="B"/>
 <wire x1="30.48" y1="78.74" x2="35.56" y2="78.74" width="0.1524" layer="91"/>
@@ -6779,6 +6692,180 @@ LETTER landscape</description>
 <pinref part="Q3" gate="1" pin="B"/>
 <wire x1="-2.54" y1="78.74" x2="-5.08" y2="78.74" width="0.1524" layer="91"/>
 <label x="-5.08" y="78.74" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+</net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="132.08" y="-25.4" size="2.54" layer="91">Headers</text>
+</plain>
+<instances>
+<instance part="J2" gate="G$1" x="63.5" y="66.04">
+<attribute name="VALUE" x="58.42" y="58.674" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="58.42" y="74.168" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J3" gate="G$1" x="63.5" y="33.02">
+<attribute name="VALUE" x="58.42" y="25.654" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="58.42" y="41.148" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="J1" gate="G$1" x="106.68" y="53.34">
+<attribute name="VALUE" x="101.6" y="43.434" size="1.778" layer="96" font="vector"/>
+<attribute name="NAME" x="101.6" y="64.008" size="1.778" layer="95" font="vector"/>
+</instance>
+<instance part="FRAME4" gate="G$1" x="-27.94" y="-43.18"/>
+<instance part="FRAME4" gate="G$2" x="119.38" y="-43.18">
+<attribute name="LAST_DATE_TIME" x="132.08" y="-41.91" size="2.54" layer="94"/>
+<attribute name="SHEET" x="205.74" y="-41.91" size="2.54" layer="94"/>
+</instance>
+</instances>
+<busses>
+</busses>
+<nets>
+<net name="ARDUINO_GND" class="0">
+<segment>
+<pinref part="J3" gate="G$1" pin="1"/>
+<wire x1="68.58" y1="30.48" x2="76.2" y2="30.48" width="0.1524" layer="91"/>
+<label x="73.66" y="30.48" size="1.778" layer="95"/>
+</segment>
+<segment>
+<pinref part="J1" gate="G$1" pin="3"/>
+<wire x1="111.76" y1="53.34" x2="119.38" y2="53.34" width="0.1524" layer="91"/>
+<label x="116.84" y="53.34" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="JETSON_GND" class="0">
+<segment>
+<pinref part="J2" gate="G$1" pin="1"/>
+<wire x1="68.58" y1="63.5" x2="76.2" y2="63.5" width="0.1524" layer="91"/>
+<label x="73.66" y="63.5" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="ARDUINO_RX" class="0">
+<segment>
+<pinref part="J3" gate="G$1" pin="3"/>
+<wire x1="68.58" y1="35.56" x2="76.2" y2="35.56" width="0.1524" layer="91"/>
+<label x="73.66" y="35.56" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="JETSON_RX" class="0">
+<segment>
+<pinref part="J2" gate="G$1" pin="3"/>
+<wire x1="68.58" y1="68.58" x2="76.2" y2="68.58" width="0.1524" layer="91"/>
+<label x="73.66" y="68.58" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="JETSON_TX" class="0">
+<segment>
+<pinref part="J2" gate="G$1" pin="4"/>
+<wire x1="68.58" y1="71.12" x2="76.2" y2="71.12" width="0.1524" layer="91"/>
+<label x="73.66" y="71.12" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="ARDUINO_TX" class="0">
+<segment>
+<pinref part="J3" gate="G$1" pin="4"/>
+<wire x1="68.58" y1="38.1" x2="76.2" y2="38.1" width="0.1524" layer="91"/>
+<label x="73.66" y="38.1" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="JETSON_1.8V" class="0">
+<segment>
+<pinref part="J2" gate="G$1" pin="2"/>
+<wire x1="68.58" y1="66.04" x2="76.2" y2="66.04" width="0.1524" layer="91"/>
+<label x="73.66" y="66.04" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="ARDUINO_5V" class="0">
+<segment>
+<pinref part="J3" gate="G$1" pin="2"/>
+<wire x1="68.58" y1="33.02" x2="76.2" y2="33.02" width="0.1524" layer="91"/>
+<label x="73.66" y="33.02" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="9V+" class="0">
+<segment>
+<wire x1="111.76" y1="60.96" x2="119.38" y2="60.96" width="0.1524" layer="91"/>
+<label x="116.84" y="60.96" size="1.778" layer="95"/>
+<pinref part="J1" gate="G$1" pin="6"/>
+</segment>
+</net>
+<net name="FIRE_GATE" class="0">
+<segment>
+<pinref part="J1" gate="G$1" pin="2"/>
+<wire x1="111.76" y1="50.8" x2="119.38" y2="50.8" width="0.1524" layer="91"/>
+<label x="116.84" y="50.8" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="9V-" class="0">
+<segment>
+<wire x1="111.76" y1="58.42" x2="119.38" y2="58.42" width="0.1524" layer="91"/>
+<label x="116.84" y="58.42" size="1.778" layer="95"/>
+<pinref part="J1" gate="G$1" pin="5"/>
+</segment>
+</net>
+<net name="ARDUINO_VIN" class="0">
+<segment>
+<wire x1="111.76" y1="55.88" x2="119.38" y2="55.88" width="0.1524" layer="91"/>
+<label x="116.84" y="55.88" size="1.778" layer="95"/>
+<pinref part="J1" gate="G$1" pin="4"/>
+</segment>
+</net>
+<net name="SPIN_ENABLE" class="0">
+<segment>
+<pinref part="J1" gate="G$1" pin="1"/>
+<wire x1="111.76" y1="48.26" x2="119.38" y2="48.26" width="0.1524" layer="91"/>
+<label x="116.84" y="48.26" size="1.778" layer="95"/>
+</segment>
+</net>
+</nets>
+</sheet>
+<sheet>
+<plain>
+<text x="55.88" y="-2.54" size="2.54" layer="91">Net Unions</text>
+</plain>
+<instances>
+<instance part="UNION_ARDUINO_VIN_9V+" gate="1" x="15.24" y="81.28">
+<attribute name="NAME" x="-2.54" y="83.82" size="1.778" layer="95"/>
+</instance>
+<instance part="UNION_ARDUINO_GND_9V-" gate="1" x="15.24" y="68.58">
+<attribute name="NAME" x="-5.08" y="71.12" size="1.778" layer="95"/>
+</instance>
+<instance part="FRAME3" gate="G$1" x="-106.68" y="-20.32"/>
+<instance part="FRAME3" gate="G$2" x="40.64" y="-20.32">
+<attribute name="LAST_DATE_TIME" x="53.34" y="-19.05" size="2.54" layer="94"/>
+<attribute name="SHEET" x="127" y="-19.05" size="2.54" layer="94"/>
+</instance>
+</instances>
+<busses>
+</busses>
+<nets>
+<net name="9V+" class="0">
+<segment>
+<pinref part="UNION_ARDUINO_VIN_9V+" gate="1" pin="2"/>
+<wire x1="20.32" y1="81.28" x2="27.94" y2="81.28" width="0.1524" layer="91"/>
+<label x="25.4" y="81.28" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="9V-" class="0">
+<segment>
+<pinref part="UNION_ARDUINO_GND_9V-" gate="1" pin="2"/>
+<wire x1="20.32" y1="68.58" x2="27.94" y2="68.58" width="0.1524" layer="91"/>
+<label x="25.4" y="68.58" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="ARDUINO_VIN" class="0">
+<segment>
+<pinref part="UNION_ARDUINO_VIN_9V+" gate="1" pin="1"/>
+<wire x1="10.16" y1="81.28" x2="2.54" y2="81.28" width="0.1524" layer="91"/>
+<label x="-5.08" y="81.28" size="1.778" layer="95"/>
+</segment>
+</net>
+<net name="ARDUINO_GND" class="0">
+<segment>
+<pinref part="UNION_ARDUINO_GND_9V-" gate="1" pin="1"/>
+<wire x1="10.16" y1="68.58" x2="2.54" y2="68.58" width="0.1524" layer="91"/>
+<label x="-7.62" y="68.58" size="1.778" layer="95"/>
 </segment>
 </net>
 </nets>
