@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 import serial
-import signal
 import rospy
 import struct
 from threading import Thread, Event, RLock
@@ -16,9 +15,7 @@ class ArduinoNode(object):
 
     def __init__(self):
         rospy.init_node('arduino')
-
-        signal.signal(signal.SIGINT, self.shutdown)
-        signal.signal(signal.SIGTERM, self.shutdown)
+        rospy.on_shutdown(self.shutdown)
 
         serial_device = rospy.get_param('serial_device', '/dev/ttyTHS2')
         serial_baud = rospy.get_param('serial_baud', 9600)
@@ -164,3 +161,7 @@ class ArduinoNode(object):
         self._shutdown_event.set()
         self._wakeup_event.set()
         self._serial.close()
+
+if __name__ == "__main__":
+    node = ArduinoNode()
+    rospy.spin()

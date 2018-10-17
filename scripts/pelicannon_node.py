@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 
-import signal
 import rospy
 import math
 from threading import Thread, Event, Lock
@@ -13,8 +12,6 @@ from std_msgs.msg import Bool, Int32, Float32
 class PelicannonNode(object):
 
     def __init__(self):
-        signal.signal(signal.SIGINT, self.shutdown)
-        signal.signal(signal.SIGTERM, self.shutdown)
 
         self._main_thread = Thread(target=self._main_thread_proc)
         self._main_thread_lock = Lock()
@@ -22,6 +19,7 @@ class PelicannonNode(object):
         self._shutdown_event = Event()
 
         rospy.init_node('pelicannon')
+        rospy.on_shutdown(self.shutdown)
 
         self._detect_window_track = rospy.get_param('detect_window_search', 10)
         self._detect_window_spin = rospy.get_param('detect_window_spin', 3)
@@ -121,3 +119,7 @@ class PelicannonNode(object):
     def shutdown(self):
         self._shutdown_event.set()
         self._wakeup_event.set()
+
+if __name__ == "__main__":
+    node = PelicannonNode()
+    rospy.spin()
