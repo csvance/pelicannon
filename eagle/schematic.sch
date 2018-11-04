@@ -6806,7 +6806,7 @@ LETTER landscape</description>
 <label x="35.56" y="78.74" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="FIRE_ENABLE" class="0">
+<net name="CYCLE_ENABLE" class="0">
 <segment>
 <pinref part="Q3" gate="1" pin="B"/>
 <wire x1="-2.54" y1="78.74" x2="-5.08" y2="78.74" width="0.1524" layer="91"/>
@@ -6909,7 +6909,7 @@ LETTER landscape</description>
 <pinref part="J1" gate="G$1" pin="6"/>
 </segment>
 </net>
-<net name="FIRE_ENABLE" class="0">
+<net name="CYCLE_ENABLE" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="2"/>
 <wire x1="111.76" y1="50.8" x2="119.38" y2="50.8" width="0.1524" layer="91"/>
