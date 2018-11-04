@@ -6522,8 +6522,8 @@ LETTER landscape</description>
 <net name="ARDUINO_GND" class="0">
 <segment>
 <pinref part="OK2" gate="A" pin="C"/>
-<wire x1="2.54" y1="15.24" x2="-5.08" y2="12.7" width="0.1524" layer="91"/>
-<label x="-5.08" y="12.7" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="2.54" y1="15.24" x2="-17.78" y2="15.24" width="0.1524" layer="91"/>
+<label x="-17.78" y="15.24" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N" class="0">
@@ -6539,22 +6539,22 @@ LETTER landscape</description>
 <net name="JETSON_GND" class="0">
 <segment>
 <pinref part="OK1" gate="A" pin="C"/>
-<wire x1="2.54" y1="45.72" x2="-5.08" y2="43.18" width="0.1524" layer="91"/>
-<label x="-5.08" y="43.18" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="2.54" y1="45.72" x2="-20.32" y2="45.72" width="0.1524" layer="91"/>
+<label x="-20.32" y="45.72" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="ARDUINO_RX" class="0">
 <segment>
 <pinref part="OK1" gate="A" pin="EMIT"/>
-<wire x1="20.32" y1="45.72" x2="27.94" y2="43.18" width="0.1524" layer="91"/>
-<label x="27.94" y="43.18" size="1.778" layer="95" xref="yes"/>
+<wire x1="20.32" y1="45.72" x2="38.1" y2="45.72" width="0.1524" layer="91"/>
+<label x="38.1" y="45.72" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="JETSON_RX" class="0">
 <segment>
 <pinref part="OK2" gate="A" pin="EMIT"/>
-<wire x1="20.32" y1="15.24" x2="27.94" y2="12.7" width="0.1524" layer="91"/>
-<label x="27.94" y="12.7" size="1.778" layer="95" xref="yes"/>
+<wire x1="20.32" y1="15.24" x2="38.1" y2="15.24" width="0.1524" layer="91"/>
+<label x="38.1" y="15.24" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 <net name="JETSON_TX" class="0">
@@ -6790,7 +6790,7 @@ LETTER landscape</description>
 <pinref part="J1" gate="G$1" pin="6"/>
 </segment>
 </net>
-<net name="FIRE_GATE" class="0">
+<net name="FIRE_ENABLE" class="0">
 <segment>
 <pinref part="J1" gate="G$1" pin="2"/>
 <wire x1="111.76" y1="50.8" x2="119.38" y2="50.8" width="0.1524" layer="91"/>
