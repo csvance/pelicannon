@@ -4,7 +4,7 @@ struct Message{
   unsigned char header[4];
   float angularZ;
   long spin;
-  long fire;
+  long cycle;
 };
 
 #define PIN_FIRE 1
@@ -16,19 +16,19 @@ Stepper stepper(STEPS, 8, 9, 10, 11);
 
 volatile float angularZ;
 volatile int spin;
-volatile int fire;
+volatile int cycle;
 
 void setup() {
   angularZ = 0.0;
   spin = 0;
-  fire = 0;
+  cycle = 0;
   
   stepper.setSpeed(0);
   Serial.begin(9600);
 }
 
 void loop() {
-
+  
   angularZ = PI;
   
   if (angularZ != 0.0){
@@ -45,7 +45,7 @@ void loop() {
      stepper.setSpeed(0);
   }
 
-  if (fire)
+  if (cycle)
     digitalWrite(PIN_FIRE, HIGH);
   else
     digitalWrite(PIN_FIRE, LOW);
@@ -60,7 +60,7 @@ void loop() {
 void serialEvent() {
 
   Message message;  
-  
+
   while (Serial.available()) {
     Serial.readBytes((char*)&message, sizeof(Message));
 
@@ -71,11 +71,12 @@ void serialEvent() {
 
        angularZ = message.angularZ;
        spin = message.spin;
-       fire = message.fire;
+       cycle = message.cycle;
 
        long rotationsPerMinute = abs(angularZ) * 60.0 * 1.0/(2.0*PI);
        stepper.setSpeed(rotationsPerMinute);
     }
+    
     
   }
 }
