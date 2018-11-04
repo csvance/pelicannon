@@ -6641,15 +6641,6 @@ LETTER landscape</description>
 <label x="38.1" y="0" size="1.778" layer="95" xref="yes"/>
 </segment>
 <segment>
-<pinref part="R5" gate="G$1" pin="2"/>
-<pinref part="T1" gate="G1" pin="C"/>
-<wire x1="35.56" y1="27.94" x2="35.56" y2="25.4" width="0.1524" layer="91"/>
-<wire x1="35.56" y1="25.4" x2="35.56" y2="22.86" width="0.1524" layer="91"/>
-<wire x1="35.56" y1="25.4" x2="45.72" y2="25.4" width="0.1524" layer="91"/>
-<junction x="35.56" y="25.4"/>
-<label x="45.72" y="25.4" size="1.778" layer="95" xref="yes"/>
-</segment>
-<segment>
 <pinref part="T1" gate="G1" pin="E"/>
 <wire x1="35.56" y1="12.7" x2="35.56" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="10.16" x2="38.1" y2="10.16" width="0.1524" layer="91"/>
@@ -6726,6 +6717,17 @@ LETTER landscape</description>
 <wire x1="35.56" y1="83.82" x2="35.56" y2="81.28" width="0.1524" layer="91"/>
 <wire x1="35.56" y1="81.28" x2="43.18" y2="81.28" width="0.1524" layer="91"/>
 <label x="43.18" y="81.28" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="JETSON_RX" class="0">
+<segment>
+<pinref part="R5" gate="G$1" pin="2"/>
+<pinref part="T1" gate="G1" pin="C"/>
+<wire x1="35.56" y1="27.94" x2="35.56" y2="25.4" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="25.4" x2="35.56" y2="22.86" width="0.1524" layer="91"/>
+<wire x1="35.56" y1="25.4" x2="45.72" y2="25.4" width="0.1524" layer="91"/>
+<junction x="35.56" y="25.4"/>
+<label x="45.72" y="25.4" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
