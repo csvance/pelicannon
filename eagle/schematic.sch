@@ -7550,6 +7550,8 @@ Warning: This is the KIT version of the AXIAL-0.3 package. This package has a sm
 <part name="R8" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="1k"/>
 <part name="D1" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SCHOTTKY-DIODE" device="CB417-15" package3d_urn="urn:adsk.eagle:package:6240685/1"/>
 <part name="D2" library="adafruit" library_urn="urn:adsk.eagle:library:420" deviceset="SCHOTTKY-DIODE" device="CB417-15" package3d_urn="urn:adsk.eagle:package:6240685/1"/>
+<part name="R9" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R10" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="1KOHM" device="-HORIZ-1/4W-5%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
 </parts>
 <sheets>
 <sheet>
@@ -7767,13 +7769,13 @@ Warning: This is the KIT version of the AXIAL-0.3 package. This package has a sm
 <attribute name="NAME" x="0" y="33.655" size="1.27" layer="95"/>
 <attribute name="VALUE" x="0" y="31.75" size="1.27" layer="96"/>
 </instance>
-<instance part="R7" gate="G$1" x="-15.24" y="73.66">
-<attribute name="NAME" x="-15.24" y="75.184" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="-15.24" y="72.136" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R7" gate="G$1" x="-22.86" y="73.66">
+<attribute name="NAME" x="-22.86" y="75.184" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="-22.86" y="72.136" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="R8" gate="G$1" x="-15.24" y="30.48">
-<attribute name="NAME" x="-15.24" y="32.004" size="1.778" layer="95" font="vector" align="bottom-center"/>
-<attribute name="VALUE" x="-15.24" y="28.956" size="1.778" layer="96" font="vector" align="top-center"/>
+<instance part="R8" gate="G$1" x="-22.86" y="30.48">
+<attribute name="NAME" x="-22.86" y="32.004" size="1.778" layer="95" font="vector" align="bottom-center"/>
+<attribute name="VALUE" x="-22.86" y="28.956" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
 <instance part="D1" gate="G$1" x="7.62" y="50.8" rot="R90">
 <attribute name="NAME" x="5.715" y="48.514" size="1.778" layer="95" rot="R90"/>
@@ -7782,6 +7784,14 @@ Warning: This is the KIT version of the AXIAL-0.3 package. This package has a sm
 <instance part="D2" gate="G$1" x="7.62" y="93.98" rot="R90">
 <attribute name="NAME" x="5.715" y="91.694" size="1.778" layer="95" rot="R90"/>
 <attribute name="VALUE" x="11.049" y="91.694" size="1.778" layer="96" rot="R90"/>
+</instance>
+<instance part="R9" gate="G$1" x="-12.7" y="25.4" rot="R270">
+<attribute name="NAME" x="-11.176" y="25.4" size="1.778" layer="95" font="vector" rot="R270" align="bottom-center"/>
+<attribute name="VALUE" x="-14.224" y="25.4" size="1.778" layer="96" font="vector" rot="R270" align="top-center"/>
+</instance>
+<instance part="R10" gate="G$1" x="-12.7" y="68.58" rot="R270">
+<attribute name="NAME" x="-11.176" y="68.58" size="1.778" layer="95" font="vector" rot="R270" align="bottom-center"/>
+<attribute name="VALUE" x="-14.224" y="68.58" size="1.778" layer="96" font="vector" rot="R270" align="top-center"/>
 </instance>
 </instances>
 <busses>
@@ -7808,31 +7818,50 @@ Warning: This is the KIT version of the AXIAL-0.3 package. This package has a sm
 <wire x1="7.62" y1="83.82" x2="-2.54" y2="83.82" width="0.1524" layer="91"/>
 <junction x="-2.54" y="83.82"/>
 </segment>
+<segment>
+<pinref part="Q1" gate="G$1" pin="S"/>
+<wire x1="-2.54" y1="68.58" x2="-2.54" y2="71.12" width="0.1524" layer="91"/>
+<label x="-2.54" y="68.58" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q2" gate="G$1" pin="S"/>
+<wire x1="-2.54" y1="22.86" x2="-2.54" y2="27.94" width="0.1524" layer="91"/>
+<label x="-2.54" y="22.86" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R10" gate="G$1" pin="2"/>
+<wire x1="-12.7" y1="63.5" x2="-12.7" y2="60.96" width="0.1524" layer="91"/>
+<label x="-12.7" y="60.96" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
+<segment>
+<pinref part="R9" gate="G$1" pin="2"/>
+<wire x1="-12.7" y1="20.32" x2="-12.7" y2="17.78" width="0.1524" layer="91"/>
+<label x="-12.7" y="17.78" size="1.778" layer="95" rot="R180" xref="yes"/>
+</segment>
 </net>
 <net name="SPIN_ENABLE" class="0">
 <segment>
-<wire x1="-7.62" y1="30.48" x2="-10.16" y2="30.48" width="0.1524" layer="91"/>
+<wire x1="-7.62" y1="30.48" x2="-12.7" y2="30.48" width="0.1524" layer="91"/>
 <pinref part="Q2" gate="G$1" pin="G"/>
 <pinref part="R8" gate="G$1" pin="2"/>
+<pinref part="R9" gate="G$1" pin="1"/>
+<wire x1="-12.7" y1="30.48" x2="-17.78" y2="30.48" width="0.1524" layer="91"/>
+<junction x="-12.7" y="30.48"/>
 </segment>
 <segment>
 <pinref part="R8" gate="G$1" pin="1"/>
-<wire x1="-20.32" y1="30.48" x2="-22.86" y2="30.48" width="0.1524" layer="91"/>
-<label x="-22.86" y="30.48" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="-27.94" y1="30.48" x2="-30.48" y2="30.48" width="0.1524" layer="91"/>
+<label x="-30.48" y="30.48" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 <net name="N$5" class="0">
 <segment>
 <pinref part="Q1" gate="G$1" pin="G"/>
 <pinref part="R7" gate="G$1" pin="2"/>
-<wire x1="-7.62" y1="73.66" x2="-10.16" y2="73.66" width="0.1524" layer="91"/>
-</segment>
-</net>
-<net name="CYCLE_ENABLE" class="0">
-<segment>
-<pinref part="R7" gate="G$1" pin="1"/>
-<wire x1="-22.86" y1="73.66" x2="-20.32" y2="73.66" width="0.1524" layer="91"/>
-<label x="-22.86" y="73.66" size="1.778" layer="95" rot="R180" xref="yes"/>
+<wire x1="-7.62" y1="73.66" x2="-12.7" y2="73.66" width="0.1524" layer="91"/>
+<pinref part="R10" gate="G$1" pin="1"/>
+<wire x1="-12.7" y1="73.66" x2="-17.78" y2="73.66" width="0.1524" layer="91"/>
+<junction x="-12.7" y="73.66"/>
 </segment>
 </net>
 <net name="9V+" class="0">
@@ -7858,23 +7887,16 @@ Warning: This is the KIT version of the AXIAL-0.3 package. This package has a sm
 <label x="-2.54" y="106.68" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
-<net name="N$6" class="0">
-<segment>
-<pinref part="Q2" gate="G$1" pin="S"/>
-<wire x1="-2.54" y1="22.86" x2="-2.54" y2="27.94" width="0.1524" layer="91"/>
-<label x="-2.54" y="22.86" size="1.778" layer="95" xref="yes"/>
-</segment>
-</net>
-<net name="N$2" class="0">
-<segment>
-<pinref part="Q1" gate="G$1" pin="S"/>
-<wire x1="-2.54" y1="68.58" x2="-2.54" y2="71.12" width="0.1524" layer="91"/>
-<label x="-2.54" y="68.58" size="1.778" layer="95" xref="yes"/>
-</segment>
-</net>
 <net name="N$1" class="0">
 <segment>
 <junction x="-2.54" y="60.96"/>
+</segment>
+</net>
+<net name="CYCLE_ENABLE" class="0">
+<segment>
+<pinref part="R7" gate="G$1" pin="1"/>
+<wire x1="-27.94" y1="73.66" x2="-30.48" y2="73.66" width="0.1524" layer="91"/>
+<label x="-30.48" y="73.66" size="1.778" layer="95" rot="R180" xref="yes"/>
 </segment>
 </net>
 </nets>
