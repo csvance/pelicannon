@@ -10,6 +10,7 @@ project(pelicannon)
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   jetson_tensorrt
+  realsense2_camera
   roscpp
   rospy
   sensor_msgs
