@@ -1,3 +1,2 @@
-private*.launch
-*.sh
 *.s#*
+*.sh
