@@ -11,7 +11,7 @@ from std_msgs.msg import Bool, Float32
 
 class ArduinoNode(object):
 
-    SERIAL_HEADER = "\xDE\xAD\xBE\xEF"
+    SERIAL_HEADER = b"\xDE\xAD\xBE\xEF"
 
     def __init__(self):
         rospy.init_node('arduino')
@@ -34,10 +34,10 @@ class ArduinoNode(object):
 
         self._last_event_lock = RLock()
 
-        self._tx_thread = Thread(target=self._tx_thread)
+        self._tx_thread = Thread(target=self._tx_thread_proc)
         self._tx_thread.start()
 
-        self._rx_thread = Thread(target=self._rx_thread)
+        self._rx_thread = Thread(target=self._rx_thread_proc)
         self._rx_thread.start()
 
         rospy.Subscriber('/stepper', Float32,

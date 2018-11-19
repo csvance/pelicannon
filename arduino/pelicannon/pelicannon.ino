@@ -18,6 +18,8 @@ volatile float angularZ;
 volatile int spin;
 volatile int cycle;
 
+int stepperPosition;
+
 void setup() {
   angularZ = 0.0;
   spin = 0;
@@ -29,8 +31,6 @@ void setup() {
 
 void loop() {
   
-  angularZ = PI;
-  
   if (angularZ != 0.0){
     /* 
      *  angularZ is radians / second
@@ -40,7 +40,7 @@ void loop() {
       stepper.step(1);
      else
       stepper.step(-1);
-
+     
   }else{
      stepper.setSpeed(0);
   }
@@ -76,7 +76,6 @@ void serialEvent() {
        long rotationsPerMinute = abs(angularZ) * 60.0 * 1.0/(2.0*PI);
        stepper.setSpeed(rotationsPerMinute);
     }
-    
     
   }
 }
