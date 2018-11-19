@@ -3,7 +3,7 @@
 <node pkg="jetson_tensorrt" type="digits_detect" name="detector" output="screen">
   <param name="image_subscribe_topic" value="/camera/color/image_raw"/>
   <param name="depth_subscribe_topic" value="/camera/depth/image_rect_raw"/>
-  <param name="threshold" value="0.5"/>
+  <param name="threshold" value="0.0"/>
 </node>
 
 <arg name="serial_no"             default=""/>

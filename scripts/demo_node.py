@@ -66,7 +66,7 @@ class DemoNode(object):
                 d_w = int(roi.w * x_scale)
                 d_h = int(roi.h * y_scale)
 
-                sub_depth = depth[d_y:d_y+d_w,d_x:d_x+d_w]
+                sub_depth = depth[d_y:d_y+d_h,d_x:d_x+d_w]
 
                 median_distance = np.median(sub_depth) / 1000.0
 
