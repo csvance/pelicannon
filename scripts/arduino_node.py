@@ -18,6 +18,8 @@ class ArduinoNode(object):
         rospy.init_node('arduino')
         rospy.on_shutdown(self.shutdown)
 
+        self._enable_pitch = rospy.get_param('enable_pitch', 0)
+
         serial_device = rospy.get_param('serial_device', '/dev/ttyTHS2')
         serial_baud = rospy.get_param('serial_baud', 9600)
         self._serial = serial.Serial(serial_device, serial_baud, timeout=0)
@@ -26,6 +28,8 @@ class ArduinoNode(object):
         self._update_arduino_event = Event()
         self._new_position_event = Event()
         self._shutdown_event = Event()
+
+        self._update_speed_event = Event()
 
         self._last_stepper_speed = [0., 0., 0.]
         self._last_stepper_goal = [0., 0., 0.]
@@ -55,6 +59,7 @@ class ArduinoNode(object):
         if self._last_stepper_speed != [v.x, v.y, v.z]
             with self._last_event_lock:
                 self._last_stepper_speed = [v.x, v.y, v.z]
+            self._update_speed_event.set()
             self._update_arduino_event.set()
             self._wakeup_event.set()
 
@@ -82,29 +87,55 @@ class ArduinoNode(object):
     def _tx_latest():
 
         msg = None
+        if self._update_speed_event.is_set():
+            self._update_speed_event.clear()
+
+            with self._last_event_lock:
+
+                # Sync Header
+                sync = ArduinoNode.SERIAL_HEADER
+
+                # Speed for yaw and pitch movements
+                speed_pitch = struct.pack("f", self._last_stepper_speed[0]) if self._enable_pitch else None
+                speed_yaw = struct.pack("f", self._last_stepper_speed[2])
+
+                # Set speed message flag
+                flags = (1 << 2)
+                if self._last_spin:
+                    flags |= (1 << 0)
+                if self._last_fire:
+                    flags |= (1 << 1)
+
+                flags = struct.pack("B", flags)
+
+                if not self._enable_pitch:
+                    msg = sync + speed_yaw + flags
+                else:
+                    msg = sync + speed_pitch + speed_yaw + flags
+
+            self._serial.write(msg)
+
         with self._last_event_lock:
 
             # Sync Header
             sync = ArduinoNode.SERIAL_HEADER
 
-            # Speed for yaw and pitch movements
-            speed_pitch = struct.pack("d", self._last_stepper_speed[0])
-            speed_yaw = struct.pack("d", self._last_stepper_speed[2])
-
-            # Spin
-            spin = struct.pack("I", self._last_spin)
-
-            # Fire
-            fire = struct.pack("I", self._last_fire)
-
-            # Enable goal mode
-            goal = struct.pack("d", 1)
-
             # Goal pose
-            goal_pitch = struct.pack("d", self._last_stepper_goal[0])
-            goal_yaw = struct.pack("d", self._last_stepper_goal[2])
+            goal_pitch = struct.pack("f", self._last_stepper_goal[0]) if self._enable_pitch else None
+            goal_yaw = struct.pack("f", self._last_stepper_goal[2])
 
-            msg = sync + speed_pitch + speed_yaw + spin + fire + goal + goal_pitch + goal_yaw
+            flags = 0
+            if self._last_spin:
+                flags |= (1 << 0)
+            if self._last_fire:
+                flags |= (1 << 1)
+
+            flags = struct.pack("B", flags)
+
+            if not self._enable_pitch:
+                msg = sync + goal_yaw + flags
+            else:
+                msg = sync + goal_pitch + goal_yaw + flags
 
         self._serial.write(msg)
 
@@ -113,14 +144,14 @@ class ArduinoNode(object):
         if len(data) == 0:
             return
 
-        if data[0:4] != ArduinoNode.SERIAL_HEADER:
+        if data[0:4] != ArduinoNode.SERIAL_HEADER[0:4]:
             self._rx_thread_sync()
             continue
 
         euler = Vector3()
-        euler.x = struct.unpack("d", data[4:8])
+        euler.x = struct.unpack("f", data[4:8]) if self._enable_pitch else 0.
         euler.y = 0.
-        euler.z = struct.unpack("d", data[8:12])
+        euler.z = struct.unpack("f", data[8:12]) if self._enable_pitch else struct.unpack("f", data[4:8])
         self._position_publisher.publish(euler)
 
     def _rx_thread_sync(self):
@@ -133,7 +164,10 @@ class ArduinoNode(object):
             if data[0] != "\xDE":
                 continue
 
-            data += self._serial.read(7)
+            if not self._enable_pitch:
+                data += self._serial.read(7)
+            else:
+                data += self._serial.read(11)
 
             if data[0:4] != ArduinoNode.SERIAL_HEADER[0:4]
                continue
@@ -148,8 +182,10 @@ class ArduinoNode(object):
 
         while True:
             # Read data from arduino
-            buffer = ""
-            self._rx_handle_data(self._serial.read(12))
+            if not self._enable_pitch:
+                self._rx_handle_data(self._serial.read(8))
+            else
+                self._rx_handle_data(self._serial.read(12))
 
             if self._shutdown_event.wait(0.001)
                return
@@ -164,8 +200,8 @@ class ArduinoNode(object):
                 return
 
             if self._update_arduino_event.is_set():
-                self._tx_latest()
                 self._update_arduino_event.clear()
+                self._tx_latest()
 
     def shutdown(self):
         self._shutdown_event.set()
