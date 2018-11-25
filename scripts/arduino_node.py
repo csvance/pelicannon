@@ -6,6 +6,7 @@ import struct
 from threading import Thread, Event, RLock
 
 from jetson_tensorrt.msg import ClassifiedRegionsOfInterest
+from geometry_msgs.msg import Vector3
 from std_msgs.msg import Bool, Float32
 
 
@@ -20,17 +21,17 @@ class ArduinoNode(object):
         serial_device = rospy.get_param('serial_device', '/dev/ttyTHS2')
         serial_baud = rospy.get_param('serial_baud', 9600)
         self._serial = serial.Serial(serial_device, serial_baud, timeout=0)
-        self._serial_lock = RLock()
 
         self._wakeup_event = Event()
         self._update_arduino_event = Event()
         self._new_position_event = Event()
         self._shutdown_event = Event()
 
-        self._last_stepper = 0.
+        self._last_stepper_speed = [0., 0., 0.]
+        self._last_stepper_goal = [0., 0., 0.]
+
         self._last_fire = False
         self._last_spin = False
-        self._last_position = 0.
 
         self._last_event_lock = RLock()
 
@@ -40,31 +41,40 @@ class ArduinoNode(object):
         self._rx_thread = Thread(target=self._rx_thread_proc)
         self._rx_thread.start()
 
-        rospy.Subscriber('/stepper', Float32,
-                         self._stepper_callback, queue_size=100)
+        rospy.Subscriber('/stepper_speed', Vector3,
+                         self._stepper_speed_callback, queue_size=100)
+        rospy.Subscriber('/stepper_goal', Vector3,
+                         self._stepper_goal_callback, queue_size=100)
         rospy.Subscriber('/fire', Bool, self._fire_callback, queue_size=100)
         rospy.Subscriber('/spin', Bool, self._detect_callback, queue_size=100)
 
         self._position_publisher = rospy.Publisher(
-            'position', Float32, queue_size=100)
+            'position', Vector3, queue_size=100)
 
-    def _stepper_callback(self, r):
-        if self._last_stepper != r.data
-           with self._txrx_thread_lock:
-                self._last_stepper = r.data
+    def _stepper_speed_callback(self, v):
+        if self._last_stepper_speed != [v.x, v.y, v.z]
+            with self._last_event_lock:
+                self._last_stepper_speed = [v.x, v.y, v.z]
+            self._update_arduino_event.set()
+            self._wakeup_event.set()
+
+    def _stepper_goal_callback(self, v):
+        if self._last_stepper_goal != [v.x, v.y, v.z]
+            with self._last_event_lock:
+                self._last_stepper_goal = [v.x, v.y, v.z]
             self._update_arduino_event.set()
             self._wakeup_event.set()
 
     def _fire_callback(self, b):
         if self._last_fire != b.data:
-            with self._txrx_thread_lock:
+            with self._last_event_lock:
                 self._last_fire = b.data
             self._update_arduino_event.set()
             self._wakeup_event.set()
 
     def _spin_callback(self, b):
         if self._last_spin != b.data:
-            with self._txrx_thread_lock:
+            with self._last_event_lock:
                 self._last_spin = b.data
             self._update_arduino_event.set()
             self._wakeup_event.set()
@@ -77,8 +87,9 @@ class ArduinoNode(object):
             # Sync Header
             sync = ArduinoNode.SERIAL_HEADER
 
-            # Stepper
-            angular_z = struct.pack("f", self._last_stepper)
+            # Speed for yaw and pitch movements
+            speed_pitch = struct.pack("d", self._last_stepper_speed[0])
+            speed_yaw = struct.pack("d", self._last_stepper_speed[2])
 
             # Spin
             spin = struct.pack("I", self._last_spin)
@@ -86,10 +97,16 @@ class ArduinoNode(object):
             # Fire
             fire = struct.pack("I", self._last_fire)
 
-            msg = sync + angular_z + spin + fire
+            # Enable goal mode
+            goal = struct.pack("d", 1)
 
-        with self._serial_lock:
-            self._serial.write(msg)
+            # Goal pose
+            goal_pitch = struct.pack("d", self._last_stepper_goal[0])
+            goal_yaw = struct.pack("d", self._last_stepper_goal[2])
+
+            msg = sync + speed_pitch + speed_yaw + spin + fire + goal + goal_pitch + goal_yaw
+
+        self._serial.write(msg)
 
     def _rx_handle_data(self, data):
 
@@ -100,25 +117,23 @@ class ArduinoNode(object):
             self._rx_thread_sync()
             continue
 
-        self._last_position = struct.unpack("f", data[4:8])
-        self._new_position_event.set()
-        self._wakeup_event.set()
+        euler = Vector3()
+        euler.x = struct.unpack("d", data[4:8])
+        euler.y = 0.
+        euler.z = struct.unpack("d", data[8:12])
+        self._position_publisher.publish(euler)
 
     def _rx_thread_sync(self):
         rospy.loginfo(rospy.get_caller_id() + " Synchronizing stream...")
 
         while True:
 
-            data = None
-
-            with self._serial_lock:
-                data = self._serial.read(1)
+            data = self._serial.read(1)
 
             if data[0] != "\xDE":
                 continue
 
-            with self._serial_lock:
-                data += self._serial.read(7)
+            data += self._serial.read(7)
 
             if data[0:4] != ArduinoNode.SERIAL_HEADER[0:4]
                continue
@@ -134,8 +149,7 @@ class ArduinoNode(object):
         while True:
             # Read data from arduino
             buffer = ""
-            with self._serial_lock:
-                self._rx_handle_data(self._serial.read(8))
+            self._rx_handle_data(self._serial.read(12))
 
             if self._shutdown_event.wait(0.001)
                return
@@ -152,10 +166,6 @@ class ArduinoNode(object):
             if self._update_arduino_event.is_set():
                 self._tx_latest()
                 self._update_arduino_event.clear()
-
-            if self._new_position_event.is_set():
-                self._position_publisher.publish(self._last_position)
-                self._new_position_event.clear()
 
     def shutdown(self):
         self._shutdown_event.set()
